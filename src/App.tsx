@@ -8,6 +8,7 @@ import ImageSymbolPuzzle from './components/ImageSymbolPuzzle';
 import Anagram from './components/Anagram';
 import QuestionPage from './components/QuestionPage';
 import CongratulationPage from './components/CongratulationPage';
+import HomePage from './components/Home';
 import './App.css';
 
 const App: React.FC = () => {
@@ -22,19 +23,15 @@ const App: React.FC = () => {
       setCurrentPuzzle('imageSymbolPuzzle');
     } else if (currentPuzzle === 'imageSymbolPuzzle') {
       setCurrentPuzzle('anagram');
-    } else if (currentPuzzle === 'anagram') {
-      alert('Congratulations!');
-    }
-    else {
-      alert('next Puzzle');
-    }
+    } 
   };
 
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Wordle onComplete={handlePuzzleCompletion} />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/wordle" element={<Wordle onComplete={handlePuzzleCompletion} />} />
           <Route path="/sudoku" element={<MemoryGame onComplete={handlePuzzleCompletion} />} />
           <Route path="/riddle" element={<Riddle onComplete={handlePuzzleCompletion} />} />
           <Route path="/imageSymbolPuzzle" element={<ImageSymbolPuzzle onComplete={handlePuzzleCompletion} />} />

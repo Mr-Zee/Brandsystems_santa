@@ -3,14 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const words = ['REACT', 'NEXTJS', 'TAILWIND', 'TYPESCRIPT', 'JAVASCRIPT'];
+const words = ['SILENT', 'BELOW', 'TAILWIND', 'CONVERSATION', 'JAVASCRIPT'];
 
 export default function Anagram({ onComplete }: { onComplete: () => void }) {
   const [word, setWord] = useState('');
   const [scrambled, setScrambled] = useState('');
   const [guess, setGuess] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize navigate for routing
+  const navigate = useNavigate(); 
 
   const startNewGame = () => {
     const randomWord = words[Math.floor(Math.random() * words.length)];

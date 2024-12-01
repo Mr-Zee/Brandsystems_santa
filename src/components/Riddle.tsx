@@ -27,21 +27,34 @@ const riddles = [
 ];
 
 export default function Riddle({ onComplete }: { onComplete: () => void }) {
-  const [riddle] = useState(riddles[Math.floor(Math.random() * riddles.length)]);
+  const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
   const [guess, setGuess] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [progress, setProgress] = useState(0);
-  const navigate = useNavigate(); 
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (guess.toLowerCase() === riddle.answer) {
+
+    const currentRiddle = riddles[currentRiddleIndex];
+
+    if (guess.toLowerCase() === currentRiddle.answer) {
       setFeedback('Correct! You solved the riddle!');
-      setProgress(100);
-      onComplete();
-      setTimeout(() => {
-        navigate('/question/riddle');
-      }, 1000); 
+      setCorrectAnswers(correctAnswers + 1);
+
+      // Move to the next level if 2 correct answers
+      if (correctAnswers + 1 >= 2) {
+        setTimeout(() => {
+          navigate('/question/riddle');
+        }, 1000);
+      } else {
+        // Move to the next riddle
+        setTimeout(() => {
+          setFeedback('');
+          setGuess('');
+          setCurrentRiddleIndex((prevIndex) => (prevIndex + 1) % riddles.length);
+        }, 1000);
+      }
     } else {
       setFeedback('Incorrect. Try again!');
     }
@@ -51,14 +64,8 @@ export default function Riddle({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="max-w-md mx-auto">
       <div className="mb-4">
-        <div className="w-full bg-gray-200 rounded-full h-2.5">
-          <div
-            className="bg-blue-500 h-2.5 rounded-full"
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
+        <p className="mb-4 text-lg">{riddles[currentRiddleIndex].question}</p>
       </div>
-      <p className="mb-4 text-lg">{riddle.question}</p>
       <form onSubmit={handleSubmit} className="mb-4 space-y-2">
         <input
           type="text"
@@ -75,6 +82,9 @@ export default function Riddle({ onComplete }: { onComplete: () => void }) {
         </button>
       </form>
       <p className="text-center font-semibold">{feedback}</p>
+      <div className="mt-4">
+        <p className="text-center">Correct Answers: {correctAnswers}</p>
+      </div>
     </div>
   );
 }

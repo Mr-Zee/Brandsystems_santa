@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-const words = ['REACT'];
+const words = ['REACT','HAPPY','LIGHT','DIZZY','DANCE','MARCO'];
 
 export default function Wordle({ onComplete }: { onComplete: () => void }) {
   const [word, setWord] = useState('');
@@ -12,7 +12,7 @@ export default function Wordle({ onComplete }: { onComplete: () => void }) {
   const [feedback, setFeedback] = useState<Array<{ color: string; letter: string }[]>>([]);
   const [gameOver, setGameOver] = useState(false);
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   const startNewGame = () => {
     setWord(words[Math.floor(Math.random() * words.length)]);
@@ -37,7 +37,7 @@ export default function Wordle({ onComplete }: { onComplete: () => void }) {
         ? 'bg-green-500'
         : word.includes(letter)
         ? 'bg-yellow-500'
-        : 'bg-gray-500',
+        : 'bg-gray-300',
     }));
 
     setFeedback([...feedback, newFeedback]);
@@ -51,7 +51,7 @@ export default function Wordle({ onComplete }: { onComplete: () => void }) {
       }, 1000); 
     } else if (attempts >= 5) {
       setGameOver(true);
-      setMessage(`Game Over. The word was ${word}. Try again!`);
+      setMessage(`Game Over. Try again!`);
     }
 
     setGuess('');
@@ -79,7 +79,7 @@ export default function Wordle({ onComplete }: { onComplete: () => void }) {
           </button>
         </form>
       )}
-      <div className="grid grid-rows-5 gap-2 mb-4">
+      <div className="grid grid-rows-5 gap-2 my-4">
         {feedback.map((attempt, index) => (
           <div key={index} className="flex space-x-2 justify-center">
             {attempt.map((letter, i) => (

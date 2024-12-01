@@ -18,7 +18,7 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       correctCode: '771',
     },
     riddle: {
-      question: 'Hand over the wrapped item to one of the companys most unpredictable and creative minds, and collect the unlock code (male)',
+      question: 'Hand over the wrapped item to one of the companys most unpredictable and creative crazy minds, and collect the unlock code (male)',
       correctCode: '999',
     },
     imageSymbolPuzzle: {
