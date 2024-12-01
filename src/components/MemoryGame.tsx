@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Sample Sudoku puzzle (0 represents an empty cell)
 const puzzle = [
-  [5, 3, 4, 6, 7, 8, 9, 1, 2],
-  [6, 7, 2, 1, 9, 5, 3, 4, 8],
-  [1, 9, 8, 3, 4, 2, 5, 6, 7],
-  [8, 5, 9, 7, 6, 1, 4, 2, 3],
-  [4, 2, 6, 8, 5, 3, 7, 9, 1],
-  [7, 1, 3, 9, 2, 4, 8, 5, 6],
-  [9, 6, 1, 5, 3, 7, 2, 8, 4],
-  [2, 8, 7, 4, 1, 9, 6, 3, 5],
-  [3, 4, 5, 2, 8, 6, 1, 7, 0],
+  [5, 3, 0, 0, 7, 0, 0, 1, 0],
+  [6, 0, 0, 1, 9, 5, 0, 0, 8],
+  [0, 9, 8, 0, 0, 0, 0, 6, 0],
+  [8, 0, 0, 0, 6, 0, 0, 0, 3],
+  [4, 0, 0, 8, 0, 3, 0, 0, 1],
+  [7, 0, 0, 0, 2, 0, 0, 0, 6],
+  [0, 6, 0, 0, 0, 0, 2, 8, 0],
+  [0, 0, 0, 4, 1, 9, 0, 0, 5],
+  [0, 4, 0, 0, 8, 0, 0, 7, 9],
 ];
 
 // Solution to the puzzle
@@ -37,7 +37,7 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
   const handleChange = (row: number, col: number, value: string) => {
     const numValue = parseInt(value, 10);
 
-    if (isNaN(numValue) || numValue < 1 || numValue > 9) return; 
+    if (isNaN(numValue) || numValue < 1 || numValue > 9) return;
     const newBoard = board.map((rowArr, rIndex) =>
       rowArr.map((cell, cIndex) =>
         rIndex === row && cIndex === col ? numValue : cell
@@ -57,10 +57,10 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
   }, [board]);
 
   const handleComplete = () => {
-    onComplete(); 
+    onComplete();
     setTimeout(() => {
-      navigate('/question/sudoku'); 
-    }, 1000); 
+      navigate("/question/sudoku");
+    }, 1000);
   };
 
   return (
@@ -73,9 +73,9 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
               key={`vr-${index}`}
               className="h-full border-l-2 border-gray-500"
               style={{
-                marginLeft: `${(index + 1) * 32}%`,
-                position: 'absolute',
-                zIndex: 0, 
+                marginLeft: `${(index + 1) * 33}%`,
+                position: "absolute",
+                zIndex: 12,
               }}
             />
           ))}
@@ -89,12 +89,14 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
                 <input
                   type="text"
                   maxLength={1}
-                  value={cell === 0 ? '' : cell}
-                  onChange={(e) => handleChange(rowIndex, colIndex, e.target.value)}
+                  value={cell === 0 ? "" : cell}
+                  onChange={(e) =>
+                    handleChange(rowIndex, colIndex, e.target.value)
+                  }
                   disabled={isFixedCell(rowIndex, colIndex)}
                   className={`w-10 mt-1 border-2 h-10 text-center text-lg font-bold bg-white ${
-                    isFixedCell(rowIndex, colIndex) ? 'bg-blue-400' : ''
-                  } z-10`} 
+                    isFixedCell(rowIndex, colIndex) ? "bg-blue-400" : ""
+                  } z-10`}
                 />
               </React.Fragment>
             );
@@ -109,8 +111,8 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
             key={`hr-${index}`}
             className="w-full border-t-2 border-gray-500"
             style={{
-              marginTop: `${(index + 1) * 26}%`, 
-              position: 'absolute',
+              marginTop: `${(index + 1) * 37}%`,
+              position: "absolute",
               zIndex: 0,
             }}
           />
@@ -126,8 +128,8 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
           disabled={!isCompleted}
           className={`px-4 py-2 rounded-md z-10 absolute ${
             isCompleted
-              ? 'bg-green-600 text-white'
-              : 'bg-gray-400 text-gray-700 cursor-not-allowed'
+              ? "bg-green-600 text-white"
+              : "bg-gray-400 text-gray-700 cursor-not-allowed"
           }`}
         >
           Finish Puzzle
