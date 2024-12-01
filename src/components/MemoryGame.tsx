@@ -94,7 +94,7 @@ export default function SudokuGame({ onComplete }: { onComplete: () => void }) {
                     handleChange(rowIndex, colIndex, e.target.value)
                   }
                   disabled={isFixedCell(rowIndex, colIndex)}
-                  className={`w-10 mt-1 border-2 h-10 text-center text-lg font-bold bg-white ${
+                  className={`w-10 mt-1 border-2 h-10 text-center text-lg font-bold ${
                     isFixedCell(rowIndex, colIndex) ? "bg-blue-400" : ""
                   } z-10`}
                 />

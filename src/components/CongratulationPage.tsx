@@ -15,6 +15,8 @@ const CongratulationPage: React.FC = () => {
       <p className={`sub-message ${showMessage ? 'show' : ''}`}>
         You have completed all the tasks. Well done! 🎉
       </p>
+      <br />
+      <p>Engage with the Human Capital Architect <br /> for  an insightful conversation to secure the  <b className='text-red-500'> Final Gift</b> </p>
     </div>
   );
 };

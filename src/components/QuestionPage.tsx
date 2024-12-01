@@ -26,7 +26,7 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       correctCode: '1122',
     },
     anagram: {
-      question: 'Engage with the Human Capital Architect for an insightful conversation to secure the final code.',
+      question: 'Engage with the Human Capital Architect for an insightful conversation to secure the final code',
       correctCode: '0011',
     },
   };
