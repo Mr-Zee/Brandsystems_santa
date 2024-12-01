@@ -2,37 +2,62 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* CongratulationPage.css */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Set background color and text alignment */
+.congratulation-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
   color: white;
+  flex-direction: column;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* Base message style */
+.message, .sub-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 1s ease-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Make the message appear with animation */
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Colorful text animation */
+.message {
+  font-size: 3rem;
+  animation: color-change 3s infinite alternate;
+}
+
+.sub-message {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: #f0f0f0;
+}
+
+/* Animation for colorful text */
+@keyframes color-change {
+  0% {
+    color: #ff69b4; /* Pink */
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    color: #ff6347; /* Tomato */
+  }
+  50% {
+    color: #32cd32; /* Lime Green */
+  }
+  75% {
+    color: #1e90ff; /* Dodger Blue */
+  }
+  100% {
+    color: #ff0; /* Yellow */
   }
 }
