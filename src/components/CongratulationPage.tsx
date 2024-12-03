@@ -16,7 +16,7 @@ const CongratulationPage: React.FC = () => {
         You have completed all the tasks. Well done! 🎉
       </p>
       <br />
-      <p>Engage with the Human Capital Architect <br /> for  an insightful conversation to secure the  <b className='text-red-500'> Final Gift</b> </p>
+      <p>Congratulations! Capture a screenshot with the time and then meet<b className='text-green-700'> Mr. Z</b> </p>
     </div>
   );
 };

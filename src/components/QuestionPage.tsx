@@ -10,25 +10,25 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   // Define the questions and codes for each puzzle
   const puzzles = {
     wordle: {
-      question: 'Retrieve the encrypted package from the Scrum Master and deliver it to the bar area to decode the access key.',
-      correctCode: '369',
+      question: 'Your clue is with the Christmas tree, marked by an ornament that isn’t red. Find it to continue the journey',
+      correctCode: '9900',
     },
     sudoku: {
-      question: 'Present the botanical gift to the high-performing and multitasking Dynamo of the team (female), then receive the decryption key.',
-      correctCode: '771',
+      question: 'With an air of elegance and a distinctive charm, this individual shares a birthday with India’s Prime Minister. Discover the person.',
+      correctCode: 'KALPITHA',
     },
     riddle: {
-      question: 'Hand over the wrapped item to one of the companys most unpredictable and creative crazy minds, and collect the unlock code (male)',
-      correctCode: '999',
+      question: 'The clue awaits in the cafeteria, marked clearly on a board. Find it to uncover the next step!',
+      correctCode: 'BRANDSYSTEMS',
     },
-    imageSymbolPuzzle: {
-      question: 'Initiate a knowledge exchange session with the Innovation Team to acquire the necessary code.',
-      correctCode: '1122',
-    },
-    anagram: {
-      question: 'Engage with the Human Capital Architect for an insightful conversation to secure the final code',
-      correctCode: '0011',
-    },
+    // imageSymbolPuzzle: {
+    //   question: 'Initiate a knowledge exchange session with the Innovation Team to acquire the necessary code.',
+    //   correctCode: '1122',
+    // },
+    // anagram: {
+    //   question: 'Engage with the Human Capital Architect for an insightful conversation to secure the final code',
+    //   correctCode: '0011',
+    // },
   };
 
   const puzzle = puzzles[puzzleName as keyof typeof puzzles];
@@ -36,17 +36,19 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (code === puzzle.correctCode) {
+    if (code.toUpperCase() === puzzle.correctCode) {
       onComplete();
       if (puzzleName === 'wordle') {
         navigate('/sudoku');
       } else if (puzzleName === 'sudoku') {
         navigate('/riddle');
       } else if (puzzleName === 'riddle') {
-        navigate('/imageSymbolPuzzle');
-      } else if (puzzleName === 'imageSymbolPuzzle') {
         navigate('/anagram');
-      } else if (puzzleName === 'anagram') {
+      } 
+      // else if (puzzleName === 'imageSymbolPuzzle') {
+      //   navigate('/anagram');
+      // }
+      else if (puzzleName === 'anagram') {
         alert('Congratulations! You have completed all puzzles!');
       }
     } else {
@@ -61,8 +63,7 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         <input
           type="text"
           value={code}
-          onChange={(e) => setCode(e.target.value)}
-          maxLength={4}
+          onChange={(e) => setCode(e.target.value.toUpperCase())}
           className="code-input"
           placeholder="Enter code"
         />

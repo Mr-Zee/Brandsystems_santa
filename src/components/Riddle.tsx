@@ -1,28 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const riddles = [
   {
-    question: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
-    answer: "echo",
+    question: "I am a container with no lock, but I can hold what's hot and keep it from going cold. What am I?",
+    answer: "thermos",
   },
   {
-    question: "You see a boat filled with people. It has not sunk, but when you look again you don't see a single person on the boat. Why?",
-    answer: "married",
+    question: "I fly without wings, I cry without eyes. Wherever I go, darkness flies. What am I?",
+    answer: "cloud",
   },
   {
-    question: "What has keys, but no locks; space, but no room; you can enter, but not go in?",
-    answer: "keyboard",
+    question: "I am not alive, but I can grow. I don’t have lungs, but I need air. What am I?",
+    answer: "fire",
   },
   {
-    question: "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?",
-    answer: "map",
+    question: "The more of me you take, the more you leave behind. What am I?",
+    answer: "footsteps",
   },
   {
-    question: "What is always in front of you but can't be seen?",
-    answer: "future",
+    question: "I am an odd number. Take away one letter, and I become even. What am I?",
+    answer: "seven",
   },
 ];
 
@@ -31,12 +31,19 @@ export default function Riddle({ onComplete }: { onComplete: () => void }) {
   const [guess, setGuess] = useState('');
   const [feedback, setFeedback] = useState('');
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [shuffledRiddles, setShuffledRiddles] = useState(riddles);
   const navigate = useNavigate();
+
+  // Shuffle riddles on component mount
+  useEffect(() => {
+    const shuffled = [...riddles].sort(() => Math.random() - 0.5);
+    setShuffledRiddles(shuffled);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const currentRiddle = riddles[currentRiddleIndex];
+    const currentRiddle = shuffledRiddles[currentRiddleIndex];
 
     if (guess.toLowerCase() === currentRiddle.answer) {
       setFeedback('Correct! You solved the riddle!');
@@ -52,7 +59,7 @@ export default function Riddle({ onComplete }: { onComplete: () => void }) {
         setTimeout(() => {
           setFeedback('');
           setGuess('');
-          setCurrentRiddleIndex((prevIndex) => (prevIndex + 1) % riddles.length);
+          setCurrentRiddleIndex((prevIndex) => (prevIndex + 1) % shuffledRiddles.length);
         }, 1000);
       }
     } else {
@@ -64,7 +71,7 @@ export default function Riddle({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="max-w-md mx-auto">
       <div className="mb-4">
-        <p className="mb-4 text-lg">{riddles[currentRiddleIndex].question}</p>
+        <p className="mb-4 text-lg">{shuffledRiddles[currentRiddleIndex].question}</p>
       </div>
       <form onSubmit={handleSubmit} className="mb-4 space-y-2">
         <input

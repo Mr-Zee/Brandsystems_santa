@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="flex items-center justify-center text-white">
       <div className="bg-black bg-opacity-50 p-10 rounded-lg text-center max-w-lg">
-        <h1 className="text-4xl font-bold mb-4">Welcome Kishoure!</h1>
+        <h1 className="text-4xl font-bold mb-4">Welcome ..!</h1>
         <p className="text-2xl mb-6">
           "Ho Ho Ho! It's the season of joy and magic. Let’s spread some holiday cheer and get ready for your next festive task! 🎅"
         </p>
