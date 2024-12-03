@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const words = ['SILENT', 'BELOW', 'TAILWIND', 'CONVERSATION', 'JAVASCRIPT'];
+const words = ['SILENT', 'DEVELOPER', 'TAILWIND', 'CONVERSATION', 'JAVASCRIPT'];
 
 export default function Anagram({ onComplete }: { onComplete: () => void }) {
   const [word, setWord] = useState('');
