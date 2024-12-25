@@ -10,16 +10,16 @@ const QuestionPage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   // Define the questions and codes for each puzzle
   const puzzles = {
     wordle: {
-      question: 'Your clue is with the Christmas tree, marked by an ornament that isn’t red. Find it to continue the journey',
-      correctCode: '9900',
+      question: 'Code 1234',
+      correctCode: '1234',
     },
     sudoku: {
-      question: 'With an air of elegance and a distinctive charm, this individual shares a birthday with India’s Prime Minister. Discover the person.',
-      correctCode: 'KALPITHA',
+      question: 'Code 1234',
+      correctCode: '1234',
     },
     riddle: {
-      question: 'The clue awaits in the cafeteria, marked clearly on a board. Find it to uncover the next step!',
-      correctCode: 'BRANDSYSTEMS',
+      question: 'Code 1234',
+      correctCode: '1234',
     },
     // imageSymbolPuzzle: {
     //   question: 'Initiate a knowledge exchange session with the Innovation Team to acquire the necessary code.',
